@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Search from './components/Search';
 import Customers from './components/Customers';
+import Library from './components/Library';
 
 
 class App extends Component {
