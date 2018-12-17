@@ -20,6 +20,9 @@ class App extends Component {
          <li>
            <Link to="/customers">Customers</Link>
          </li>
+         <li>
+           <Link to="/library">Library</Link>
+         </li>
        </ul>
 
        <hr />
@@ -27,6 +30,7 @@ class App extends Component {
 
        <Route path="/search" component={Search} />
        <Route path="/customers" component={Customers} />
+       <Route path="/library" component={Library}/>
      </div>
    </Router>
     );
