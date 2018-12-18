@@ -8,26 +8,19 @@ import axios from 'axios';
 //
 const URL = "https://api.themoviedb.org/3/search/movie?api_key="
 const API_KEY = "161b3d718398488fdf5752738c1b2b60"
+
 class Search extends Component {
   constructor(){
     super()
-
     this.state = {
       resultList:[]
     }
-
   }
-
-
 
   onSearchChange = (query) => {
     this.listResults(query)
   }
 
-  // this.props.onSearchChange(event.target.value);
-  //   console.log(this.state)
-  // }
-  //
   listResults = (query) => {
     axios.get(URL + API_KEY + "&query=" + `${query}`)
     .then((response) => {
@@ -42,7 +35,7 @@ class Search extends Component {
           overview: result.overview ? result.overview: "",
         }
         return newResult
-      }).filter((result, index) => index < 10);
+      })
       this.setState ({
         resultList
       });
@@ -62,7 +55,7 @@ class Search extends Component {
     return (
       <section>
         <SearchBar onSearchCallback = {this.onSearchChange}/>
-    
+
         <h3>
           { this.state.resultList.length > 0 && `Showing ${this.state.resultList.length} results` }
         </h3>
