@@ -13,6 +13,14 @@ class Customers extends Component {
 
   componentDidMount() {
     // axios get request here
+    axios
+      .get("http://localhost:5000/customers")
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
   render() {
     return <h2> Customers </h2>;
