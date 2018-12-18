@@ -19,6 +19,8 @@ class VideoStore extends Component {
     }
   }
 
+
+
   render() {
     return (
     <section>
@@ -40,14 +42,14 @@ class VideoStore extends Component {
            </ul>
 
            <hr />
-
+           <h2> VideoStore </h2>
 
            <Route path="/search" component={Search} />
            <Route path="/customers" component={Customers} />
            <Route path="/library" component={Library}/>
          </div>
       </Router>
-      <h2> VideoStore </h2>
+
 
     </section>
   )
