@@ -11,7 +11,7 @@ const Customer = props => {
       <p>{movieCount} movies checked out</p>
       <button
         type="button"
-        className="addCustomerToRental"
+        className="btn btn-info addCustomerToRental"
         onClick={() => {
           props.addCustomerNameCallback(name);
         }}
