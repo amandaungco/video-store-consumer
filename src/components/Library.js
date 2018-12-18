@@ -41,7 +41,8 @@ class Library extends Component {
               id={movie.id}
               title={movie.title}
               overview={movie.overview}
-              image={movie.image_url} />
+              image={movie.image_url}
+              />
 
     })
 

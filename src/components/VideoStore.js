@@ -56,7 +56,7 @@ class VideoStore extends Component {
          </div>
       </Router>
       <div>
-        <Library />
+        <Library  addMovieNameCallback={this.addMovieName} />
       </div>
 
     </section>
