@@ -28,7 +28,6 @@ class Customers extends Component {
         // Pass back up to Video Store
         // Have callback update video store state for customers
         const customerComponents = response.data.map(customer => {
-          console.log(customer.movies_checked_out_count);
           return (
             <Customer
               key={customer.id}
@@ -53,8 +52,6 @@ class Customers extends Component {
   customerCollection = () => {
     return this.state.customers.map(customer => {
       return (
-        // TODO Add movie count to customer state
-
         <Customer
           key={customer.props.id}
           id={customer.props.id}
