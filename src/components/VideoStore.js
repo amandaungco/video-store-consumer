@@ -11,27 +11,41 @@ class VideoStore extends Component {
     super();
     this.state = {
       customerName: "",
+      customerID: 0,
       movieName: "",
+      movieID: 0,
       isSubmitted: false,
       customers: [],
       alertMessage: ""
     };
   }
-  addMovieName = name => {
-    this.setState({ movieName: name });
+  addMovieName = (name, id) => {
+    this.setState({
+      movieName: name,
+      movieID: id
+    });
   };
-  addCustomerName = name => {
-    this.setState({ customerName: name });
+  addCustomerName = (name, id) => {
+    this.setState({
+      customerName: name,
+      customerID: id,
+    });
   };
 
-  rentalCheckout = (movie, customer) => {
-    const url = `https://localhost:5000/${movie}/checkout`
+  rentalCheckout = () => {
+    const { movieName, customerID } = this.state;
+    const url = `http://localhost:5000/rentals/${movieName}/check-out`
     let dueDate = new Date();
     dueDate.setDate(dueDate.getDate() + 7);
-    axios.post(url, customer, dueDate)
+
+    axios.post(url, {customer_id: customerID, due_date: dueDate})
       .then((response) => {
         console.log('API Checkout Success!');
         console.log(response);
+
+        this.setState({
+          alertMessage: `Successfully Checked out!`
+        })
       })
       .catch((error) => {
         this.setState({
@@ -65,7 +79,8 @@ class VideoStore extends Component {
               <li>
                 Customer Name: <span>{this.state.customerName}</span>
               </li>
-              <button className="btn btn-info">Submit Rental</button>
+              <button className="btn btn-info"
+              onClick={this.rentalCheckout}>Submit Rental</button>
             </ul>
             <h4 className="alertMessage">{this.state.alertMessage}</h4>
             <Route path="/search" component={Search} />

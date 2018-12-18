@@ -64,7 +64,7 @@ Library.propTypes = {
   image: PropTypes.string,
   overview: PropTypes.string,
   id: PropTypes.number,
-  title: PropTypes.title,
+  title: PropTypes.string,
 };
 
 export default Library;

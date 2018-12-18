@@ -13,7 +13,7 @@ const Customer = props => {
         type="button"
         className="btn btn-info addCustomerToRental"
         onClick={() => {
-          props.addCustomerNameCallback(name);
+          props.addCustomerNameCallback(name, id);
         }}
       >
         Select for Rental
