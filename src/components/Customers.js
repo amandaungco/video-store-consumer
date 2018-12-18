@@ -56,10 +56,14 @@ class Customers extends Component {
   render() {
     return (
       <div className="customers">
+
         <section className="validation-errors">
           {this.state.errorMessage}
         </section>
-        {this.customerCollection()}
+        <div className="container">
+          <h2 className="customerHeading">Customers:</h2>
+          {this.customerCollection()}
+        </div>
       </div>
     );
   }
