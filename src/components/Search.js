@@ -28,7 +28,7 @@ class Search extends Component {
         console.log(result)
         const newResult = {
           ...result,
-          imageUrl:result.backdrop_path,
+          imageURL:result.image_url,
           title: result.title,
           releaseDate: result.release_date,
           overview: result.overview ? result.overview: "",
