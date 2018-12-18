@@ -10,7 +10,7 @@ class VideoStore extends Component {
     super();
 
     this.state = {
-      customerName: 'Susan',
+      customerName: '',
       movieName: "",
       isSubmitted: false,
       customers: [],
