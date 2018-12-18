@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import Movie from './Movie';
 import './Library.css';
+
 
 class Library extends Component {
   constructor() {
@@ -42,6 +44,7 @@ class Library extends Component {
               title={movie.title}
               overview={movie.overview}
               image={movie.image_url}
+              addMovieNameCallback={this.props.addMovieNameCallback}
               />
 
     })
@@ -55,5 +58,13 @@ class Library extends Component {
     )
   }
 }
+
+Library.propTypes = {
+  addMovieNameCallback: PropTypes.func,
+  image: PropTypes.string,
+  overview: PropTypes.string,
+  id: PropTypes.number,
+  title: PropTypes.string,
+};
 
 export default Library;
