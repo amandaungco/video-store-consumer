@@ -13,7 +13,9 @@ const Movie = (props) => {
       </div>
       <p className="text-center">{overview}</p>
       <div className="text-center">
-        <button className="btn btn-info">Add to Rental</button>
+        <button className="btn btn-info"
+          onClick={() => {props.addMovieNameCallback(title, id)}}
+          >Add to Rental</button>
       </div>
     </div>
   )
@@ -23,7 +25,8 @@ Movie.propTypes = {
   image: PropTypes.string,
   overview: PropTypes.string,
   id: PropTypes.number,
-  title: PropTypes.title,
+  title: PropTypes.string,
+  addMovieNameCallback: PropTypes.func,
 }
 
 export default Movie;
