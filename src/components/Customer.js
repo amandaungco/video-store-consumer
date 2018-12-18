@@ -13,7 +13,7 @@ const Customer = props => {
         type="button"
         className="addCustomerToRental"
         onClick={() => {
-          props.addCustomerCallback(name);
+          props.addCustomerNameCallback(name);
         }}
       >
         Select for Rental
@@ -25,7 +25,7 @@ const Customer = props => {
 Customer.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  addCustomerCallback: PropTypes.func,
+  addCustomerNameCallback: PropTypes.func,
   movieCount: PropTypes.number
 };
 
