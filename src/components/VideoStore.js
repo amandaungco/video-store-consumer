@@ -18,6 +18,10 @@ class VideoStore extends Component {
     }
   }
 
+  addMovieName = (name) => {
+    this.setState({movieName: name})
+  }
+
   render() {
     return (
     <section>
@@ -52,11 +56,11 @@ class VideoStore extends Component {
 
            <Route path="/search" component={Search} />
            <Route path="/customers" component={Customers} />
-           <Route path="/library" component={Library}/>
+           <Route path="/library" render={()=> (<Library addMovieNameCallback={this.addMovieName} />)}/>
          </div>
       </Router>
       <div>
-        <Library  addMovieNameCallback={this.addMovieName} />
+        <Library addMovieNameCallback={this.addMovieName} />
       </div>
 
     </section>
