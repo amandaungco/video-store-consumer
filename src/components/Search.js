@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import SearchList from './SearchList'
 import SearchBar from './SearchBar'
 import axios from 'axios';
+import './SearchBar.css'
 
 
-const URL = "http://localhost:3000/movies?query="
+const URL = "http://localhost:5000/movies?query="
 
 class Search extends Component {
   constructor(){

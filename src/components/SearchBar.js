@@ -29,6 +29,7 @@ class SearchBar extends Component {
 
       <section>
       <input
+      type="search"
       onChange={this.onSearchChange}
       value={this.state.searchValue}
       name="search-bar"
