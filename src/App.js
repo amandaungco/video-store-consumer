@@ -5,6 +5,7 @@ import Search from './components/Search';
 import Customers from './components/Customers';
 import Library from './components/Library';
 import VideoStore from './components/VideoStore';
+require('dotenv').config()
 
 
 class App extends Component {

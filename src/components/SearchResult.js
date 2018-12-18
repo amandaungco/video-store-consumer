@@ -7,13 +7,13 @@ import './SearchResult.css';
 
 
 const SearchResult = (props) => {
-  const { id, name, releaseDate, about, image, genre } = props;
+  const { title, releaseDate, overview, imageURL } = props;
   return (
     <div className="card pet-card">
 
       <section className="pet-card--header">
 
-      { name} {image}
+      {title} {releaseDate} {imageURL}
         <button
           onClick={() => {props.selectResultCallback(props.id)}}
           className="btn btn-primary"
@@ -22,11 +22,9 @@ const SearchResult = (props) => {
         </button>
       </section>
       <section className="pet-card--body">
-        { about.length > 128 ? `${about.substring(0, 128)}...` : about}
+        { overview.length > 128 ? `${overview.substring(0, 128)}...` : overview}
       </section>
-      <section className="pet-card--footer text-muted">
-        {genre}
-      </section>
+
     </div>
   );
 };
