@@ -21,7 +21,6 @@ class Customers extends Component {
         // Pass back up to Video Store
         // Have callback update video store state for customers
         const customerComponents = response.data.map(customer => {
-          console.log(this);
           return (
             <Customer
               key={customer.id}
