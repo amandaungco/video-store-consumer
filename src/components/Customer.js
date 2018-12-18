@@ -7,7 +7,7 @@ class Customer extends Component {
     return (
       <section className="customerInformation">
         <h2>{this.props.name}</h2>
-        <p>{this.props.movieCount}</p>
+        <p>{this.props.movieCount} movies checked out</p>
         <button
           type="button"
           className="addCustomerToRental"
