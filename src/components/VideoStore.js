@@ -3,14 +3,15 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Search from './Search';
 import Customers from './Customers';
 import Library from './Library';
+import './VideoStore.css'
 
 class VideoStore extends Component {
   constructor() {
     super();
 
     this.state = {
-      customer_name: "",
-      movie_name: "",
+      customerName: 'Susan',
+      movieName: "",
       isSubmitted: false,
       customers: [],
       alertMessage: "",
@@ -20,6 +21,8 @@ class VideoStore extends Component {
   render() {
     return (
     <section>
+      <h1 className="text-center"> VideoStore </h1>
+
       <Router>
          <div>
            <ul>
@@ -35,10 +38,17 @@ class VideoStore extends Component {
              <li>
                <Link to="/library">Library</Link>
              </li>
+             <li>
+               Movie Name: <span>{this.state.movieName}</span>
+             </li>
+             <li>
+               Customer Name: <span>{this.state.customerName}</span>
+             </li>
+             <button className="btn btn-info">
+               Submit Rental
+            </button>
            </ul>
 
-           <hr />
-           <h2> VideoStore </h2>
 
            <Route path="/search" component={Search} />
            <Route path="/customers" component={Customers} />

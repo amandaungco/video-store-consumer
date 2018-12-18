@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Movie.css';
 
 const Movie = (props) => {
   const { id, overview, image, title } = props;
 
   return (
-    <div className="card card__content">
-      <img src={image} alt={`${title}`} className="movie-image"/>
-      <p>{image}</p>
-      <p>{title}</p>
-      <p>{overview}</p>
+    <div className="card d-inline-block">
+      <h3 className="text-center">{title}</h3>
+      <div className="text-center">
+        <img src={image} alt={`${title}`} className="mx-auto movie-image"/>
+      </div>
+      <p className="text-center">{overview}</p>
+      <div className="text-center">
+        <button className="btn btn-info">Add to Rental</button>
+      </div>
     </div>
   )
 }

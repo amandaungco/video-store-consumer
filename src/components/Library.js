@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Movie from './Movie';
+import './Library.css';
 
 class Library extends Component {
   constructor() {
@@ -46,8 +47,9 @@ class Library extends Component {
 
     return (
       <section>
-        <h2>Library</h2>
-        {movie}
+        <div className="container library">
+          {movie}
+        </div>
       </section>
     )
   }
