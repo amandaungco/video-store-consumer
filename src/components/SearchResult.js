@@ -26,7 +26,8 @@ const SearchResult = (props) => {
 
       <section className="pet-card--header">
 
-        {title} {releaseDate} {imageURL}
+        {title} {releaseDate}
+        <img src={imageURL}/>
         <button
           onClick={() => {onSearchResultSelect()}}
           className="btn btn-primary"
