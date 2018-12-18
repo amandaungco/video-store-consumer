@@ -1,5 +1,5 @@
 .customerInformation {
-  margin-bottom: 1rem;
+  margin: 1rem;
   padding: 1rem;
   background-color: #e9e9e9;
   display: grid;
@@ -13,8 +13,8 @@
 }
 
 .customerInformation button {
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
   grid-column: 2 / 3;
   grid-row: 1 / 3;
   margin-left: auto;

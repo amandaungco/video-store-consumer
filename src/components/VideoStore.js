@@ -5,8 +5,8 @@ class VideoStore extends Component {
     super();
 
     this.state = {
-      customer_name: "",
-      movie_name: "",
+      customerName: "",
+      movieName: "",
       isSubmitted: false,
       movies: [],
       customers: [],
