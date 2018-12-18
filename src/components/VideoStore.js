@@ -22,9 +22,11 @@ class VideoStore extends Component {
     this.setState({
       customerName: name
     });
-    console.log(this.state.customerName);
   };
 
+  addMovieName = name => {
+    this.setState({ movieName: name });
+  };
   render() {
     return (
       <section>
@@ -53,13 +55,7 @@ class VideoStore extends Component {
               </li>
               <button className="btn btn-info">Submit Rental</button>
             </ul>
-
-            <Route
-              path="/search"
-              component={Search}
-              customers={this.state.customers}
-              addCustomerCallback={this.updateCustomerName}
-            />
+            <Route path="/search" component={Search} />
             <Route
               path="/customers"
               render={() => (
@@ -70,7 +66,12 @@ class VideoStore extends Component {
               )}
               customers={this.state.customers}
             />
-            <Route path="/library" component={Library} />
+            <Route
+              path="/library"
+              render={() => (
+                <Library addMovieNameCallback={this.addMovieName} />
+              )}
+            />
           </div>
         </Router>
         <div>
