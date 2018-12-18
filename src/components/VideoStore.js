@@ -31,7 +31,7 @@ class VideoStore extends Component {
   };
 
   rentalCheckout = () => {
-    const { movieName, customerID } = this.state;
+    const { movieName, customerID, customerName } = this.state;
     const url = `http://localhost:5000/rentals/${movieName}/check-out`
     let dueDate = new Date();
     dueDate.setDate(dueDate.getDate() + 7);
@@ -42,7 +42,10 @@ class VideoStore extends Component {
         console.log(response);
 
         this.setState({
-          alertMessage: `Successfully Checked out!`
+          alertMessage: `${customerName} successfully Checked out ${movieName}!`,
+          movieName: "",
+          customerID: 0,
+          customerName: "",
         })
       })
       .catch((error) => {
@@ -80,7 +83,7 @@ class VideoStore extends Component {
               <button className="btn btn-info"
               onClick={this.rentalCheckout}>Submit Rental</button>
             </ul>
-            <h4 className="alertMessage">{this.state.alertMessage}</h4>
+            <h4 className="alertMessage text-center">{this.state.alertMessage}</h4>
             <Route path="/search" component={Search} />
             <Route
               path="/customers"
