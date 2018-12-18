@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 <<<<<<< HEAD
@@ -11,20 +12,28 @@ import Customers from './Customers';
 import Library from './Library';
 import './VideoStore.css'
 >>>>>>> hannah
+=======
+import React, { Component } from "react";
+>>>>>>> d6b0b745187f096943edfb2cc1c8f093ba3caed5
 
 class VideoStore extends Component {
   constructor() {
     super();
 
     this.state = {
+<<<<<<< HEAD
       customerName: '',
+=======
+      customerName: "",
+>>>>>>> d6b0b745187f096943edfb2cc1c8f093ba3caed5
       movieName: "",
       isSubmitted: false,
       customers: [],
-      alertMessage: "",
-    }
+      alertMessage: ""
+    };
   }
 
+<<<<<<< HEAD
 
 
   render() {
@@ -100,6 +109,15 @@ class VideoStore extends Component {
 >>>>>>> hannah
     </section>
   )
+=======
+  addCustomerToRental = customerObject => {
+    this.setState({
+      customerName: customerObject.name
+    });
+  };
+  render() {
+    return <h2> VideoStore </h2>;
+>>>>>>> d6b0b745187f096943edfb2cc1c8f093ba3caed5
   }
 }
 
