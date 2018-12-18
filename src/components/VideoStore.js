@@ -13,9 +13,7 @@ class VideoStore extends Component {
       customerName: "",
       customerID: 0,
       movieName: "",
-      movieID: 0,
       isSubmitted: false,
-      customers: [],
       alertMessage: ""
     };
   }
