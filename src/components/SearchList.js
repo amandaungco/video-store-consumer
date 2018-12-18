@@ -6,7 +6,7 @@ import SearchResult from './SearchResult';
 
 const SearchList = (props) => {
   const SearchList = props.resultList.map((result) => {
-    return <SearchResult key={result.id}
+    return <SearchResult key={result.external_id}
              selectResultCallback={props.selectResultCallback}
              {...result} />
   });

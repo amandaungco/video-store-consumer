@@ -30,8 +30,8 @@ const SearchResult = (props) => {
 };
 
 SearchResult.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  releaseDate: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   selectResultCallback: PropTypes.func.isRequired
 
 }
