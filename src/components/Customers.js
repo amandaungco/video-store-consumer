@@ -59,6 +59,7 @@ class Customers extends Component {
           key={customer.props.id}
           id={customer.props.id}
           name={customer.props.name}
+          movieCount={customer.props.movieCount}
         />
       );
     });
