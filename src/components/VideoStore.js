@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
 class VideoStore extends Component {
   constructor() {
@@ -10,13 +10,17 @@ class VideoStore extends Component {
       isSubmitted: false,
       movies: [],
       customers: [],
-      alertMessage: "",
-    }
+      alertMessage: ""
+    };
   }
 
+  addCustomerToRental = customerObject => {
+    this.setState({
+      customerName: customerObject.name
+    });
+  };
   render() {
-    return <h2> VideoStore </h2>
-
+    return <h2> VideoStore </h2>;
   }
 }
 

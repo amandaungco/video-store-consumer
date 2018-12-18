@@ -1,20 +1,24 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import "./Customer.css";
 
-// Customer has name
 class Customer extends Component {
   render() {
     return (
-      <div>
-        <h2> Customer </h2>
+      <section className="customerInformation">
         <h2>{this.props.name}</h2>
+        <p>{this.props.movieCount}</p>
         <button
           type="button"
-          onClick={() => this.props.addCustomerCallback(this.props.name)}
+          className="addCustomerToRental"
+          onClick={
+            () => console.log(this.props)
+            // this.props.addCustomerCallback(this.props.addCustomerCallback)
+          }
         >
           Select for Rental
         </button>
-      </div>
+      </section>
     );
   }
 }
@@ -22,7 +26,8 @@ class Customer extends Component {
 Customer.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  addCustomerCallback: PropTypes.func
+  addCustomerCallback: PropTypes.func,
+  movieCount: PropTypes.number
 };
 
 export default Customer;
