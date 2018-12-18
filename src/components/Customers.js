@@ -27,7 +27,6 @@ class Customers extends Component {
               id={customer.id}
               name={customer.name}
               movieCount={customer.movies_checked_out_count}
-              addCustomerCallback={this.addCustomerCallback}
             />
           );
         });
@@ -49,7 +48,7 @@ class Customers extends Component {
           id={customer.props.id}
           name={customer.props.name}
           movieCount={customer.props.movieCount}
-          addCustomerCallback={this.props.addCustomerCallback}
+          addCustomerNameCallback={this.props.addCustomerNameCallback}
         />
       );
     });
@@ -67,7 +66,7 @@ class Customers extends Component {
 }
 
 Customers.propTypes = {
-  addCustomerCallback: PropTypes.func
+  addCustomerNameCallback: PropTypes.func
 };
 
 export default withRouter(Customers);
