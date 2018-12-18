@@ -4,10 +4,7 @@ import SearchBar from './SearchBar'
 import axios from 'axios';
 
 
-// {name: 'Elf', genre: 'funny', about: 'great movie about a man in a red suit'}, {name: 'test', genre: 'cute', about: 'great movie about a woman in a red suit'}
-//
-const URL = "https://api.themoviedb.org/3/search/movie?api_key="
-const API_KEY = "161b3d718398488fdf5752738c1b2b60"
+const URL = "http://localhost:3000/movies?query="
 
 class Search extends Component {
   constructor(){
@@ -22,10 +19,11 @@ class Search extends Component {
   }
 
   listResults = (query) => {
-    axios.get(URL + API_KEY + "&query=" + `${query}`)
+    axios.get(URL + `${query}`)
+
     .then((response) => {
-      console.log(response.data.results)
-      const resultList = response.data.results.map((result) => {
+      console.log(response)
+      const resultList = response.data.map((result) => {
         console.log(result)
         const newResult = {
           ...result,
