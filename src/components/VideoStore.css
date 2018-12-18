@@ -1,0 +1,42 @@
+h1 {
+  font-family: 'Monoton', cursive;
+  font-size: 9rem;
+  padding: 2rem;
+  padding-top: 5rem;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
+}
+
+li {
+  list-style: none;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2rem;
+}
+
+ul {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 7rem;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
+}
+
+a::after {
+  color: white;
+}
+
+/* span {
+  height: 2rem;
+  background-color: white;
+  width: 10rem;
+  color: black;
+  border-radius: 5px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+} */
