@@ -13,10 +13,17 @@ class VideoStore extends Component {
       customerName: "",
       movieName: "",
       isSubmitted: false,
-      customers: [],
+      customers: ["test"],
       alertMessage: ""
     };
   }
+
+  addCustomerName = name => {
+    this.setState({
+      customerName: name
+    });
+    console.log(this.state.customerName);
+  };
 
   render() {
     return (
@@ -47,8 +54,22 @@ class VideoStore extends Component {
               <button className="btn btn-info">Submit Rental</button>
             </ul>
 
-            <Route path="/search" component={Search} />
-            <Route path="/customers" component={Customers} />
+            <Route
+              path="/search"
+              component={Search}
+              customers={this.state.customers}
+              addCustomerCallback={this.updateCustomerName}
+            />
+            <Route
+              path="/customers"
+              render={() => (
+                <Customers
+                  customers={this.state.customers}
+                  addCustomerCallback={this.addCustomerName}
+                />
+              )}
+              customers={this.state.customers}
+            />
             <Route path="/library" component={Library} />
           </div>
         </Router>
