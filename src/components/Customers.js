@@ -1,27 +1,20 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Customer from "./Customer";
 import "./Customers.css";
 
 class Customers extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       customers: []
     };
   }
 
-  movieRentalCount = () => {
-    //Returns count of customer movies
-    // Get request to our Rails api?
-  };
-
   componentDidMount() {
     axios
-      // Deploying?
-      // They could run server on -5000
-      // hardcode the heroku version later / change to localhost during development
       .get("http://localhost:5000/customers")
       .then(response => {
         // Create array of customer objects
@@ -34,7 +27,6 @@ class Customers extends Component {
               id={customer.id}
               name={customer.name}
               movieCount={customer.movies_checked_out_count}
-              addCustomerCallback={this.props.addCustomerCallback}
             />
           );
         });
@@ -43,7 +35,6 @@ class Customers extends Component {
         });
       })
       .catch(error => {
-        console.log(error);
         this.setState({
           errorMessage: error.message
         });
@@ -57,6 +48,7 @@ class Customers extends Component {
           id={customer.props.id}
           name={customer.props.name}
           movieCount={customer.props.movieCount}
+          addCustomerNameCallback={this.props.addCustomerNameCallback}
         />
       );
     });
@@ -73,4 +65,8 @@ class Customers extends Component {
   }
 }
 
-export default Customers;
+Customers.propTypes = {
+  addCustomerNameCallback: PropTypes.func
+};
+
+export default withRouter(Customers);
