@@ -26,9 +26,6 @@ class VideoStore extends Component {
     axios
       .get("http://localhost:5000/customers")
       .then(response => {
-        // Create array of customer objects
-        // Pass back up to Video Store
-        // Have callback update video store state for customers
         const customerComponents = response.data.map(customer => {
           return (
             <Customer
@@ -53,11 +50,9 @@ class VideoStore extends Component {
       .get("http://localhost:5000/")
       .then(response => {
         console.log("API get movies success!");
-        // console.log(response);
         const movieList = response.data.map(movie => {
           return movie;
         });
-        console.log(movieList);
         this.setState({
           movies: movieList
         });
@@ -82,20 +77,13 @@ class VideoStore extends Component {
       customerID: id
     });
   };
-  // TODO - How to send from search result to VideoStore? Callback to Search?
-  // addMovieToLibrary = newMovie => {
-  //   this.state.movies.push(newMovie);
-  //   this.setState({
-  //     movies: this.state.movies
-  //   });
-  // };
 
   rentalCheckout = () => {
     const { movieName, customerID, customerName } = this.state;
     const url = `http://localhost:5000/rentals/${movieName}/check-out`;
     let dueDate = new Date();
     dueDate.setDate(dueDate.getDate() + 7);
-
+    // api request for rental checkout
     axios
       .post(url, { customer_id: customerID, due_date: dueDate })
       .then(response => {

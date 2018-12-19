@@ -36,9 +36,7 @@ class Search extends Component {
       .get(URL + `${query}`)
 
       .then(response => {
-        console.log(response);
         const resultList = response.data.map(result => {
-          console.log(result);
           const newResult = {
             ...result,
             imageURL: result.image_url,
@@ -53,8 +51,6 @@ class Search extends Component {
         });
       })
       .catch(error => {
-        console.log(error.message);
-        console.log("this is the catch");
         this.setState({
           alertMessage: error.message
         });
