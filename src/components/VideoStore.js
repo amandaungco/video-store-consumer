@@ -45,12 +45,7 @@ class VideoStore extends Component {
       });
   }
 
-  componentDidMount() {
-    // API Request for customers
-
-    this.loadCustomers();
-    // API request for movies
-
+  loadMovies() {
     axios
       .get("http://localhost:5000/")
       .then(response => {
@@ -68,6 +63,13 @@ class VideoStore extends Component {
           alertMessage: error.message
         });
       });
+  }
+
+  componentDidMount() {
+    // API Request for customers
+    this.loadCustomers();
+    // API request for movies
+    this.loadMovies();
   }
 
   addMovieName = (name, id) => {
