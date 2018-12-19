@@ -23,6 +23,7 @@ const SearchResult = props => {
       <section className="movie-card--header">
         <h4>{title}</h4>
         <img src={imageURL} />
+        <h3>{releaseDate}</h3>
       </section>
       <section className="movie-card--body">
         <div>

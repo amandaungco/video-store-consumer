@@ -33,28 +33,34 @@ class Search extends Component {
 
   listResults = query => {
     axios
-      .get(URL + `${query}`)
+    .get(URL + `${query}`)
 
-      .then(response => {
-        const resultList = response.data.map(result => {
-          const newResult = {
-            ...result,
-            imageURL: result.image_url,
-            title: result.title,
-            releaseDate: result.release_date,
-            overview: result.overview ? result.overview : ""
-          };
-          return newResult;
-        });
-        this.setState({
-          resultList
-        });
-      })
-      .catch(error => {
-        this.setState({
-          alertMessage: error.message
-        });
+    .then(response => {
+      const resultList = response.data.map(result => {
+        const newResult = {
+          ...result,
+          imageURL: result.image_url,
+          title: result.title,
+          releaseDate: result.release_date,
+          overview: result.overview ? result.overview : ""
+        };
+        return newResult;
       });
+      if (resultList.length < 1){
+        this.setState({
+          alertMessage: "No Results Found"
+        });
+      }
+
+      this.setState({
+        resultList
+      });
+    })
+    .catch(error => {
+      this.setState({
+        alertMessage: error.message
+      });
+    });
   };
 
   render() {
@@ -65,12 +71,12 @@ class Search extends Component {
         <h3>
           {this.state.resultList.length > 0 &&
             `Showing ${this.state.resultList.length} results`}
-        </h3>
-        <h4 className="alertMessage text-center">{this.state.alertMessage}</h4>
-        <SearchList resultList={this.state.resultList} />
-      </section>
-    );
+          </h3>
+          <h4 className="alertMessage text-center">{this.state.alertMessage}</h4>
+          <SearchList resultList={this.state.resultList} />
+        </section>
+      );
+    }
   }
-}
 
-export default Search;
+  export default Search;
