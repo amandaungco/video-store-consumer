@@ -140,6 +140,7 @@ class VideoStore extends Component {
         <h1 className="text-center"> VideoStore </h1>​
         <Router>
           <div>
+
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -167,8 +168,7 @@ class VideoStore extends Component {
               {this.state.alertMessage}
             </h4>
             <Route
-              exact
-              path="/"
+              exact path="/"
               render={() => (
                 <Library
                   addMovieNameCallback={this.addMovieName}
@@ -197,12 +197,6 @@ class VideoStore extends Component {
             />
           </div>
         </Router>
-        <div>
-          <Library
-            addMovieNameCallback={this.addMovieName}
-            movies={this.state.movies}
-          />
-        </div>
       </section>
     );
   }

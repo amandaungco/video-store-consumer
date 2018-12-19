@@ -1,39 +1,5 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 body {
-  /* background: url('https://images.cdn2.stockunlimited.net/preview1300/dark-stage-background_2012900.jpg') no-repeat center center fixed; */
-
   background: url('https://images.unsplash.com/photo-1471877325906-aee7c2240b5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80') no-repeat center center fixed;
-
-  /* background: url('https://i.pinimg.com/originals/98/bd/c8/98bdc8fd707e48ab7885830623a26603.jpg') no-repeat center center fixed; */
-  /* background-color: black; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -53,6 +19,7 @@ button {
   color: #c6e2ff;
   background-color: black;
   border-color: white;
+  width: 15rem;
   /* animation: neon .08s ease-in-out infinite alternate; */
 }
 
