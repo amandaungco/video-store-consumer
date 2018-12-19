@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
-import axios from "axios";
 import Customer from "./Customer";
 import "./Customers.css";
 

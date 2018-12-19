@@ -65,7 +65,7 @@ class VideoStore extends Component {
       .catch(error => {
         console.log("error!");
         this.setState({
-          alertMessage: error.message
+          alertMessage: error.message[0]
         });
       });
   }
