@@ -19,13 +19,16 @@ p {
   grid-column: 1 / 2;
 }
 
-.customerInformation button {
+.addCustomerToRental {
   height: 4rem;
   grid-column: 2 / 3;
   grid-row: 1 / 3;
   margin-left: auto;
   margin-right: auto;
   vertical-align: center;
+  line-height: 100%;
+  height: 100%;
+
 }
 
 .customerHeading {

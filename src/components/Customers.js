@@ -62,7 +62,9 @@ class Customers extends Component {
         </section>
         <div className="container">
           <h2 className="customerHeading">Customers:</h2>
-          {this.customerCollection()}
+          <div className="">
+            {this.customerCollection()}
+          </div>
         </div>
       </div>
     );
