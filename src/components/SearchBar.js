@@ -1,32 +1,26 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 class SearchBar extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      searchValue: '',
+      searchValue: ""
     };
   }
-  onSearchChange = (event) => {
+  onSearchChange = event => {
     this.setState({
-      searchValue: event.target.value,
-    })
-  }
+      searchValue: event.target.value
+    });
+  };
 
-  onSubmit = (event) => {
+  onSubmit = event => {
     event.preventDefault();
-    this.props.onSearchCallback(this.state.searchValue)
-    console.log(this.state.searchValue)
-  }
-
-
-
-
+    this.props.onSearchCallback(this.state.searchValue);
+    console.log(this.state.searchValue);
+  };
   render() {
     return (
-
       <section className="text-center">
         <input
           type="search"
@@ -36,15 +30,19 @@ class SearchBar extends Component {
           className="search-bar"
           placeholder="Search Movies"
         />
-        <input className="btn btn-info new-movie-form__form-button" type="submit" name="submit"
-          onClick={this.onSubmit}/>
+        <input
+          className="btn btn-info new-movie-form__form-button"
+          type="submit"
+          name="submit"
+          onClick={this.onSubmit}
+        />
       </section>
-    )
+    );
   }
 }
 
 SearchBar.propTypes = {
-  onSearchCallback: PropTypes.func.isRequired,
+  onSearchCallback: PropTypes.func.isRequired
 };
 
 export default SearchBar;

@@ -6,9 +6,6 @@ import axios from "axios";
 const SearchResult = props => {
   const { title, releaseDate, overview, imageURL } = props;
   const onSearchResultSelect = () => {
-    console.log(props);
-    // TODO - Update state of movies with new movie in Video Store via callback
-    // Build a movie component and pass it up callback
     axios
       .post("http://localhost:5000/movies", props)
 
