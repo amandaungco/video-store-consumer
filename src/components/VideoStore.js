@@ -82,10 +82,19 @@ class VideoStore extends Component {
     //   // Do rental checkout if both fields are valid/clear out old errors
     if (this.state.customerName === "" && this.state.movieName === "") {
       console.log("Both empty");
+      this.setState({
+        alertMessage: "Please select a customer and movie"
+      });
     } else if (this.state.customerName != "" && this.state.movieName === "") {
       console.log("Movie is empty");
+      this.setState({
+        alertMessage: "Please select a movie for the rental"
+      });
     } else if (this.state.customerName === "" && this.state.movieName != "") {
       console.log("Customer is empty");
+      this.setState({
+        alertMessage: "Please select a customer for the rental"
+      });
     } else {
       this.rentalCheckout();
     }
