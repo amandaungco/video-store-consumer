@@ -78,6 +78,19 @@ class VideoStore extends Component {
     });
   };
 
+  validateCheckout = () => {
+    //   // Do rental checkout if both fields are valid/clear out old errors
+    if (this.state.customerName === "" && this.state.movieName === "") {
+      console.log("Both empty");
+    } else if (this.state.customerName != "" && this.state.movieName === "") {
+      console.log("Movie is empty");
+    } else if (this.state.customerName === "" && this.state.movieName != "") {
+      console.log("Customer is empty");
+    } else {
+      this.rentalCheckout();
+    }
+  };
+
   rentalCheckout = () => {
     const { movieName, customerID, customerName } = this.state;
     const url = `http://localhost:5000/rentals/${movieName}/check-out`;
@@ -98,7 +111,7 @@ class VideoStore extends Component {
         });
       })
       .catch(error => {
-        console.log(error.response.data.errors)
+        console.log(error.response.data.errors);
         this.setState({
           alertMessage: "Need both a valid Movie and Customer."
         });
@@ -130,7 +143,7 @@ class VideoStore extends Component {
               <li>
                 Customer Name: <span>{this.state.customerName}</span>
               </li>
-              <button className="btn btn-info" onClick={this.rentalCheckout}>
+              <button className="btn btn-info" onClick={this.validateCheckout}>
                 Submit Rental
               </button>
             </ul>
