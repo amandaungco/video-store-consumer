@@ -14,7 +14,6 @@ class VideoStore extends Component {
       customerName: "",
       customerID: "",
       movieName: "",
-      isSubmitted: false,
       alertMessage: "",
       customers: [],
       movies: []
