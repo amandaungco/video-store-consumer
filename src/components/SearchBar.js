@@ -27,17 +27,17 @@ class SearchBar extends Component {
   render() {
     return (
 
-      <section>
-      <input
-      type="search"
-      onChange={this.onSearchChange}
-      value={this.state.searchValue}
-      name="search-bar"
-      className="search-bar"
-      placeholder="Search Movies"
-      />
-      <input className="btn btn-success new-card-form__form-button" type="submit" name="submit"
-      onClick={this.onSubmit}/>
+      <section className="text-center">
+        <input
+          type="search"
+          onChange={this.onSearchChange}
+          value={this.state.searchValue}
+          name="search-bar"
+          className="search-bar"
+          placeholder="Search Movies"
+        />
+        <input className="btn btn-info new-movie-form__form-button" type="submit" name="submit"
+          onClick={this.onSubmit}/>
       </section>
     )
   }

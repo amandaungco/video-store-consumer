@@ -84,6 +84,12 @@ class VideoStore extends Component {
               onClick={this.rentalCheckout}>Submit Rental</button>
             </ul>
             <h4 className="alertMessage text-center">{this.state.alertMessage}</h4>
+            <Route
+              exact path="/"
+              render={() => (
+                <Library addMovieNameCallback={this.addMovieName} />
+              )}
+            />
             <Route path="/search" component={Search} />
             <Route
               path="/customers"
@@ -99,9 +105,6 @@ class VideoStore extends Component {
             />
           </div>
         </Router>
-        <div>
-          <Library addMovieNameCallback={this.addMovieName} />
-        </div>
       </section>
     );
   }
