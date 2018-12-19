@@ -22,26 +22,29 @@ const SearchResult = props => {
   };
 
   return (
-    <div className="card pet-card">
-      <section className="pet-card--header">
-        {title} {releaseDate}
+    <div className="card movie-card">
+      <section className="movie-card--header">
+        <h4>{title}</h4>
         <img src={imageURL} />
+      </section>
+      <section className="movie-card--body">
+        <div>
+          {overview.length > 128
+            ? `${overview.substring(0, 128)}...`
+            : overview}
+        </div>
         <button
           onClick={() => {
             onSearchResultSelect();
           }}
-          className="btn btn-primary"
+          className="btn btn-info"
         >
           Select
         </button>
       </section>
-      <section className="pet-card--body">
-        {overview.length > 128 ? `${overview.substring(0, 128)}...` : overview}
-      </section>
     </div>
   );
 };
-
 SearchResult.propTypes = {
   releaseDate: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

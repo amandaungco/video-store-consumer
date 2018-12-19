@@ -12,7 +12,7 @@ const SearchList = (props) => {
   });
 
   return (
-    <div className="card-group">
+    <div className="container">
       {SearchList}
     </div>
   )

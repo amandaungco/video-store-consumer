@@ -17,7 +17,14 @@ const Customers = props => {
       />
     );
   });
-  return <div className="customers">{customerCollection}</div>;
+  return (
+    <div className="customers">
+      <div className="container">
+        <h2 className="customerHeading">Customers:</h2>
+        <div className="">{customerCollection}</div>
+      </div>
+    </div>
+  );
 };
 
 Customers.propTypes = {

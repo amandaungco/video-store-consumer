@@ -1,8 +1,13 @@
+/* .card {
+  width: 30rem;
+} */
+
 .customerInformation {
   margin: 1rem;
   padding: 1rem;
-  border: 1px solid black;
-  background-color: #e9e9e9;
+  border: 1px solid white;
+  border-radius: 8px;
+  background-color: black;
   display: grid;
   grid-template-columns: 75% 25%;
   grid-template-rows: 1;
@@ -14,11 +19,19 @@ p {
   grid-column: 1 / 2;
 }
 
-.customerInformation button {
-  height: 100px;
-  width: 100px;
+.addCustomerToRental {
+  height: 4rem;
   grid-column: 2 / 3;
   grid-row: 1 / 3;
   margin-left: auto;
   margin-right: auto;
+  vertical-align: center;
+  line-height: 100%;
+  height: 100%;
+
+}
+
+.customerHeading {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }

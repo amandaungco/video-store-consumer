@@ -45,9 +45,10 @@ class VideoStore extends Component {
       })
       .catch(error => {
         this.setState({
-          errorMessage: error.message
+          alertMessage: error.message
         });
       });
+    // API request for movies
     axios
       .get("http://localhost:5000/")
       .then(response => {
@@ -147,6 +148,16 @@ class VideoStore extends Component {
             <h4 className="alertMessage text-center">
               {this.state.alertMessage}
             </h4>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Library
+                  addMovieNameCallback={this.addMovieName}
+                  movies={this.state.movies}
+                />
+              )}
+            />
             <Route path="/search" component={Search} />
             <Route
               path="/customers"
