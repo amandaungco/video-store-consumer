@@ -5,68 +5,24 @@ import axios from "axios";
 import Customer from "./Customer";
 import "./Customers.css";
 
-class Customers extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      customers: []
-    };
-  }
-
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/customers")
-      .then(response => {
-        // Create array of customer objects
-        // Pass back up to Video Store
-        // Have callback update video store state for customers
-        const customerComponents = response.data.map(customer => {
-          return (
-            <Customer
-              key={customer.id}
-              id={customer.id}
-              name={customer.name}
-              movieCount={customer.movies_checked_out_count}
-            />
-          );
-        });
-        this.setState({
-          customers: customerComponents
-        });
-      })
-      .catch(error => {
-        this.setState({
-          errorMessage: error.message
-        });
-      });
-  }
-  customerCollection = () => {
-    return this.state.customers.map(customer => {
-      return (
-        <Customer
-          key={customer.props.id}
-          id={customer.props.id}
-          name={customer.props.name}
-          movieCount={customer.props.movieCount}
-          addCustomerNameCallback={this.props.addCustomerNameCallback}
-        />
-      );
-    });
-  };
-  render() {
+const Customers = props => {
+  const customerCollection = props.customers.map(customer => {
     return (
-      <div className="customers">
-        <section className="validation-errors">
-          {this.state.errorMessage}
-        </section>
-        {this.customerCollection()}
-      </div>
+      <Customer
+        key={customer.props.id}
+        id={customer.props.id}
+        name={customer.props.name}
+        movieCount={customer.props.movieCount}
+        addCustomerNameCallback={props.addCustomerNameCallback}
+      />
     );
-  }
-}
+  });
+  return <div className="customers">{customerCollection}</div>;
+};
 
 Customers.propTypes = {
-  addCustomerNameCallback: PropTypes.func
+  addCustomerNameCallback: PropTypes.func,
+  customers: PropTypes.array
 };
 
 export default withRouter(Customers);
