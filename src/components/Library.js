@@ -4,46 +4,9 @@ import axios from "axios";
 import Movie from "./Movie";
 import "./Library.css";
 
-class Library extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      movies: []
-    };
-  }
-
-  addMovieToLibrary = newMovie => {
-    this.state.movies.push(newMovie);
-    this.setState({
-      movies: this.state.movies
-    });
-  };
-
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/")
-      .then(response => {
-        console.log("API get movies success!");
-        // console.log(response);
-        const movieList = response.data.map(movie => {
-          return movie;
-        });
-        console.log(movieList);
-        this.setState({
-          movies: movieList
-        });
-      })
-      .catch(error => {
-        console.log("error!");
-        this.setState({
-          alertMessage: error.message
-        });
-      });
-  }
-
-  render() {
-    const movie = this.state.movies.map(movie => {
+const Library = props => {
+  if (props.movies.length > 0) {
+    let movie = props.movies.map(movie => {
       return (
         <Movie
           key={movie.id}
@@ -51,25 +14,31 @@ class Library extends Component {
           title={movie.title}
           overview={movie.overview}
           image={movie.image_url}
-          addMovieNameCallback={this.props.addMovieNameCallback}
+          addMovieNameCallback={props.addMovieNameCallback}
         />
       );
     });
-
     return (
       <section>
         <div className="container library">{movie}</div>
       </section>
     );
+  } else {
+    return (
+      <section>
+        <div className="container library">Loading Movies</div>
+      </section>
+    );
   }
-}
+};
 
 Library.propTypes = {
   addMovieNameCallback: PropTypes.func,
   image: PropTypes.string,
   overview: PropTypes.string,
   id: PropTypes.number,
-  title: PropTypes.string
+  title: PropTypes.string,
+  movies: PropTypes.array
 };
 
 export default Library;

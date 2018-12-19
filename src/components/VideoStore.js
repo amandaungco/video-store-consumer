@@ -8,16 +8,16 @@ import Library from "./Library";
 import "./VideoStore.css";
 
 class VideoStore extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       customerName: "",
       customerID: 0,
       movieName: "",
       isSubmitted: false,
       alertMessage: "",
-      movies: [],
-      customers: []
+      customers: [],
+      movies: []
     };
   }
 
@@ -48,6 +48,25 @@ class VideoStore extends Component {
           errorMessage: error.message
         });
       });
+    axios
+      .get("http://localhost:5000/")
+      .then(response => {
+        console.log("API get movies success!");
+        // console.log(response);
+        const movieList = response.data.map(movie => {
+          return movie;
+        });
+        console.log(movieList);
+        this.setState({
+          movies: movieList
+        });
+      })
+      .catch(error => {
+        console.log("error!");
+        this.setState({
+          alertMessage: error.message
+        });
+      });
   }
 
   addMovieName = (name, id) => {
@@ -62,6 +81,13 @@ class VideoStore extends Component {
       customerID: id
     });
   };
+  // TODO - How to send from search result to VideoStore? Callback to Search?
+  // addMovieToLibrary = newMovie => {
+  //   this.state.movies.push(newMovie);
+  //   this.setState({
+  //     movies: this.state.movies
+  //   });
+  // };
 
   rentalCheckout = () => {
     const { movieName, customerID, customerName } = this.state;
@@ -134,13 +160,19 @@ class VideoStore extends Component {
             <Route
               path="/library"
               render={() => (
-                <Library addMovieNameCallback={this.addMovieName} />
+                <Library
+                  addMovieNameCallback={this.addMovieName}
+                  movies={this.state.movies}
+                />
               )}
             />
           </div>
         </Router>
         <div>
-          <Library addMovieNameCallback={this.addMovieName} />
+          <Library
+            addMovieNameCallback={this.addMovieName}
+            movies={this.state.movies}
+          />
         </div>
       </section>
     );
