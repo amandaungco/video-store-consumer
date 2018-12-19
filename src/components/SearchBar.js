@@ -28,16 +28,17 @@ class SearchBar extends Component {
     return (
 
       <section className="text-center">
-        <input
-          type="search"
-          onChange={this.onSearchChange}
-          value={this.state.searchValue}
-          name="search-bar"
-          className="search-bar"
-          placeholder="Search Movies"
-        />
-        <input className="btn btn-info new-movie-form__form-button" type="submit" name="submit"
-          onClick={this.onSubmit}/>
+        <form onSubmit={this.onSubmit}>
+          <input
+            type="search"
+            onChange={this.onSearchChange}
+            value={this.state.searchValue}
+            name="search-bar"
+            className="search-bar"
+            placeholder="Search Movies"
+          />
+          <input className="btn btn-info new-movie-form__form-button" type="submit" name="submit"/>
+        </form>
       </section>
     )
   }
