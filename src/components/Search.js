@@ -1,68 +1,80 @@
-import React, {Component} from 'react';
-import SearchList from './SearchList'
-import SearchBar from './SearchBar'
-import axios from 'axios';
-import './SearchBar.css'
+import React, { Component } from "react";
+import SearchList from "./SearchList";
+import SearchBar from "./SearchBar";
+import axios from "axios";
+import "./SearchBar.css";
 
-
-const URL = "http://localhost:5000/movies?query="
+const URL = "http://localhost:5000/movies?query=";
 
 class Search extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
-      resultList:[]
-    }
+      resultList: [],
+      alertMessage: ""
+    };
   }
 
-  onSearchChange = (query) => {
-    this.listResults(query)
-  }
-
-  listResults = (query) => {
-    axios.get(URL + `${query}`)
-
-    .then((response) => {
-      console.log(response)
-      const resultList = response.data.map((result) => {
-        console.log(result)
-        const newResult = {
-          ...result,
-          imageURL:result.image_url,
-          title: result.title,
-          releaseDate: result.release_date,
-          overview: result.overview ? result.overview: "",
-        }
-        return newResult
-      })
-      this.setState ({
-        resultList
-      });
-
-    })
-    .catch((error) => {
-      console.log(error.message);
-      console.log("this is the catch")
+  onSearchChange = query => {
+    if (query === "") {
       this.setState({
-        errorMessage: error.message,
+        alertMessage: "Please enter a movie"
       });
+    } else {
+      this.setState({
+        alertMessage: this.state.alertMessage.replace(
+          "Please enter a movie",
+          ""
+        )
+      });
+      this.listResults(query);
+    }
+  };
 
-    });
-  }
+  listResults = query => {
+    axios
+      .get(URL + `${query}`)
+
+      .then(response => {
+        console.log(response);
+        const resultList = response.data.map(result => {
+          console.log(result);
+          const newResult = {
+            ...result,
+            imageURL: result.image_url,
+            title: result.title,
+            releaseDate: result.release_date,
+            overview: result.overview ? result.overview : ""
+          };
+          return newResult;
+        });
+        this.setState({
+          resultList
+        });
+      })
+      .catch(error => {
+        console.log(error.message);
+        console.log("this is the catch");
+        this.setState({
+          alertMessage: error.message
+        });
+      });
+  };
 
   render() {
     return (
       <section>
-        <SearchBar onSearchCallback = {this.onSearchChange}/>
+        <SearchBar onSearchCallback={this.onSearchChange} />
 
         <h3>
-          { this.state.resultList.length > 0 && `Showing ${this.state.resultList.length} results` }
+          {this.state.resultList.length > 0 &&
+            `Showing ${this.state.resultList.length} results`}
         </h3>
-        <SearchList
-          resultList = {this.state.resultList}
-          />
+        <h4 className="alertMessage text-center">{this.state.alertMessage}</h4>
+        <SearchList resultList={this.state.resultList} />
       </section>
-    )}
+    );
   }
+}
 
-  export default Search;
+export default Search;
