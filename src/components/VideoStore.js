@@ -14,15 +14,13 @@ class VideoStore extends Component {
       customerName: "",
       customerID: "",
       movieName: "",
-      isSubmitted: false,
       alertMessage: "",
       customers: [],
       movies: []
     };
   }
 
-  // API Request for customers
-  componentDidMount() {
+  loadCustomers() {
     axios
       .get("http://localhost:5000/customers")
       .then(response => {
@@ -45,7 +43,9 @@ class VideoStore extends Component {
           alertMessage: error.message
         });
       });
-    // API request for movies
+  }
+
+  loadMovies() {
     axios
       .get("http://localhost:5000/")
       .then(response => {
@@ -65,6 +65,13 @@ class VideoStore extends Component {
       });
   }
 
+  componentDidMount() {
+    // API Request for customers
+    this.loadCustomers();
+    // API request for movies
+    this.loadMovies();
+  }
+
   addMovieName = (name, id) => {
     this.setState({
       movieName: name,
@@ -78,18 +85,40 @@ class VideoStore extends Component {
     });
   };
 
+  validateCheckout = () => {
+    //   // Do rental checkout if both fields are valid/clear out old errors
+    if (this.state.customerName === "" && this.state.movieName === "") {
+      console.log("Both empty");
+      this.setState({
+        alertMessage: "Please select a customer and movie"
+      });
+    } else if (this.state.customerName != "" && this.state.movieName === "") {
+      console.log("Movie is empty");
+      this.setState({
+        alertMessage: "Please select a movie for the rental"
+      });
+    } else if (this.state.customerName === "" && this.state.movieName != "") {
+      console.log("Customer is empty");
+      this.setState({
+        alertMessage: "Please select a customer for the rental"
+      });
+    } else {
+      this.rentalCheckout();
+    }
+  };
+
   rentalCheckout = () => {
     const { movieName, customerID, customerName } = this.state;
     const url = `http://localhost:5000/rentals/${movieName}/check-out`;
     let dueDate = new Date();
     dueDate.setDate(dueDate.getDate() + 7);
-    // api request for rental checkout
     axios
       .post(url, { customer_id: customerID, due_date: dueDate })
       .then(response => {
+        // callback method
         console.log("API Checkout Success!");
         console.log(response);
-
+        this.loadCustomers();
         this.setState({
           alertMessage: `${customerName} successfully Checked out ${movieName}!`,
           movieName: "",
@@ -98,7 +127,7 @@ class VideoStore extends Component {
         });
       })
       .catch(error => {
-        console.log(error.response.data.errors)
+        console.log(error.response.data.errors);
         this.setState({
           alertMessage: "Need both a valid Movie and Customer."
         });
@@ -130,7 +159,7 @@ class VideoStore extends Component {
               <li>
                 Customer Name: <span>{this.state.customerName}</span>
               </li>
-              <button className="btn btn-info" onClick={this.rentalCheckout}>
+              <button className="btn btn-info" onClick={this.validateCheckout}>
                 Submit Rental
               </button>
             </ul>
