@@ -12,7 +12,7 @@ class VideoStore extends Component {
     super(props);
     this.state = {
       customerName: "",
-      customerID: 0,
+      customerID: "",
       movieName: "",
       isSubmitted: false,
       alertMessage: "",
@@ -45,7 +45,7 @@ class VideoStore extends Component {
       })
       .catch(error => {
         this.setState({
-          alertMessage: error.message
+          alertMessage: "error.message"
         });
       });
     // API request for movies
@@ -65,7 +65,7 @@ class VideoStore extends Component {
       .catch(error => {
         console.log("error!");
         this.setState({
-          alertMessage: error.message[0]
+          alertMessage: error.message
         });
       });
   }
@@ -110,8 +110,9 @@ class VideoStore extends Component {
         });
       })
       .catch(error => {
+        console.log(error.response.data.errors)
         this.setState({
-          alertMessage: `Failure ${error.message}`
+          alertMessage: "Need both a valid Movie and Customer."
         });
       });
   };
