@@ -20,8 +20,7 @@ class VideoStore extends Component {
     };
   }
 
-  // API Request for customers
-  componentDidMount() {
+  loadCustomers() {
     axios
       .get("http://localhost:5000/customers")
       .then(response => {
@@ -44,7 +43,14 @@ class VideoStore extends Component {
           alertMessage: error.message
         });
       });
+  }
+
+  componentDidMount() {
+    // API Request for customers
+
+    this.loadCustomers();
     // API request for movies
+
     axios
       .get("http://localhost:5000/")
       .then(response => {
@@ -104,13 +110,13 @@ class VideoStore extends Component {
     const url = `http://localhost:5000/rentals/${movieName}/check-out`;
     let dueDate = new Date();
     dueDate.setDate(dueDate.getDate() + 7);
-    // api request for rental checkout
     axios
       .post(url, { customer_id: customerID, due_date: dueDate })
       .then(response => {
+        // callback method
         console.log("API Checkout Success!");
         console.log(response);
-
+        this.loadCustomers();
         this.setState({
           alertMessage: `${customerName} successfully Checked out ${movieName}!`,
           movieName: "",
