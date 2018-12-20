@@ -5,6 +5,7 @@ import Search from "./Search";
 import Customers from "./Customers";
 import Customer from "./Customer";
 import Library from "./Library";
+
 import "./VideoStore.css";
 
 class VideoStore extends Component {
@@ -19,6 +20,11 @@ class VideoStore extends Component {
       movies: []
     };
   }
+
+  changeMessage = (message) => {
+   this.setState({ alertMessage: message });
+   setTimeout(() => this.setState({ alertMessage: "" }), 2500);
+  };
 
   loadCustomers() {
     axios
@@ -39,9 +45,7 @@ class VideoStore extends Component {
         });
       })
       .catch(error => {
-        this.setState({
-          alertMessage: error.message
-        });
+        this.changeMessage(error.message);
       });
   }
 
@@ -59,9 +63,7 @@ class VideoStore extends Component {
       })
       .catch(error => {
         console.log("error!");
-        this.setState({
-          alertMessage: error.message
-        });
+        this.changeMessage(error.message);
       });
   }
 
@@ -89,19 +91,13 @@ class VideoStore extends Component {
     //   // Do rental checkout if both fields are valid/clear out old errors
     if (this.state.customerName === "" && this.state.movieName === "") {
       console.log("Both empty");
-      this.setState({
-        alertMessage: "Please select a customer and movie"
-      });
+      this.changeMessage("Please select a customer and movie");
     } else if (this.state.customerName != "" && this.state.movieName === "") {
       console.log("Movie is empty");
-      this.setState({
-        alertMessage: "Please select a movie for the rental"
-      });
+      this.changeMessage("Please select a movie for the rental");
     } else if (this.state.customerName === "" && this.state.movieName != "") {
       console.log("Customer is empty");
-      this.setState({
-        alertMessage: "Please select a customer for the rental"
-      });
+      this.changeMessage("Please select a customer for the rental");
     } else {
       this.rentalCheckout();
     }
@@ -128,9 +124,7 @@ class VideoStore extends Component {
       })
       .catch(error => {
         console.log(error.response.data.errors);
-        this.setState({
-          alertMessage: "Need both a valid Movie and Customer."
-        });
+        this.changeMessage("Need both a valid Movie and Customer.");
       });
   };
 
@@ -166,7 +160,7 @@ class VideoStore extends Component {
                 Submit Rental
               </button>
             </ul>
-            <h4 className="alertMessage text-center">
+            <h4 duration={5000} className="alertMessage text-center">
               {this.state.alertMessage}
             </h4>
             <Route
