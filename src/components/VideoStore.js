@@ -137,7 +137,9 @@ class VideoStore extends Component {
   render() {
     return (
       <section>
-        <h1 className="text-center"> VideoStore </h1>​
+        <div className="text">
+          <h1 className="text-center"> VideoStore </h1>​
+        </div>
         <Router>
           <div>
 
