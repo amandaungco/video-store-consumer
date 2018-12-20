@@ -46,15 +46,14 @@ class Search extends Component {
         };
         return newResult;
       });
-      if (resultList.length < 1){
+      this.setState({
+        resultList
+      });
+      if (this.state.resultList.length < 1){
         this.setState({
           alertMessage: "No Results Found"
         });
       }
-
-      this.setState({
-        resultList
-      });
     })
     .catch(error => {
       this.setState({
