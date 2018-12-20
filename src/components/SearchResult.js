@@ -10,51 +10,51 @@ class SearchResult extends Component {
       alertMessage: ""
     };
   }
+
+  changeMessage = (message) => {
+   this.setState({ alertMessage: message });
+   setTimeout(() => this.setState({ alertMessage: "" }), 2500);
+  };
+
   // const { title, releaseDate, overview, imageURL } = props
   onSearchResultSelect = () => {
     axios
       .post("http://localhost:5000/movies", this.props)
 
       .then(response => {
-        this.setState({
-          alertMessage: `${this.props.title} was added to the library`
-        });
+        this.changeMessage(`${this.props.title} was added to the library`);
         console.log(response);
         console.log("request posted");
       })
       .catch(error => {
         console.log(error);
-        this.setState({
-          alertMessage: error.message
-        });
+        this.changeMessage(error.message);
       });
   };
   render() {
     return (
-      <section>
+      <div className="card movie-card">
         <h4 className="alertMessage text-center">{this.state.alertMessage}</h4>
-        <div className="card movie-card">
-          <section className="movie-card--header">
-            <h4>{this.props.title}</h4>
-            <img src={this.props.imageURL} />
-          </section>
-          <section className="movie-card--body">
-            <div>
-              {this.props.overview.length > 128
-                ? `${this.props.overview.substring(0, 128)}...`
-                : this.props.overview}
-            </div>
-            <button
-              onClick={() => {
-                this.onSearchResultSelect();
-              }}
-              className="btn btn-info"
-            >
-              Select
-            </button>
-          </section>
-        </div>
-      </section>
+        <section className="movie-card--header">
+          <h4>{this.props.title}</h4>
+          <img src={this.props.imageURL} />
+        </section>
+        <section className="movie-card--body">
+          <div>
+            {this.props.overview.length > 128
+              ? `${this.props.overview.substring(0, 128)}...`
+              : this.props.overview}
+          </div>
+          <button
+            onClick={() => {
+              this.onSearchResultSelect();
+            }}
+            className="btn btn-info"
+          >
+            Select
+          </button>
+        </section>
+      </div>
     );
   }
 }
