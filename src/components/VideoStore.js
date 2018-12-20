@@ -21,6 +21,11 @@ class VideoStore extends Component {
     };
   }
 
+  changeMessage = message => {
+   this.setState({ message });
+   setTimeout(() => this.setState({ alertMessage: "" }), 2500);
+  };
+
   loadCustomers() {
     axios
       .get("http://localhost:5000/customers")
