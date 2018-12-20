@@ -28,7 +28,7 @@ class VideoStore extends Component {
 
   loadCustomers() {
     axios
-      .get("http://localhost:5000/customers")
+      .get("https://videostore-hac.herokuapp.com/customers")
       .then(response => {
         const customerComponents = response.data.map(customer => {
           return (
@@ -51,7 +51,7 @@ class VideoStore extends Component {
 
   loadMovies() {
     axios
-      .get("http://localhost:5000/")
+      .get("https://videostore-hac.herokuapp.com/")
       .then(response => {
         console.log("API get movies success!");
         const movieList = response.data.map(movie => {
@@ -105,7 +105,7 @@ class VideoStore extends Component {
 
   rentalCheckout = () => {
     const { movieName, customerID, customerName } = this.state;
-    const url = `http://localhost:5000/rentals/${movieName}/check-out`;
+    const url = `https://videostore-hac.herokuapp.com/rentals/${movieName}/check-out`;
     let dueDate = new Date();
     dueDate.setDate(dueDate.getDate() + 7);
     axios

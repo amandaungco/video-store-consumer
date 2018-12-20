@@ -19,7 +19,7 @@ class SearchResult extends Component {
   // const { title, releaseDate, overview, imageURL } = props
   onSearchResultSelect = () => {
     axios
-      .post("http://localhost:5000/movies", this.props)
+      .post("https://videostore-hac.herokuapp.com/movies", this.props)
 
       .then(response => {
         this.changeMessage(`${this.props.title} was added to the library`);

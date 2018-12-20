@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 import axios from "axios";
 import "./SearchBar.css";
 
-const URL = "http://localhost:5000/movies?query=";
+const URL = "https://videostore-hac.herokuapp.com/movies?query=";
 
 class Search extends Component {
   constructor() {
