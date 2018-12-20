@@ -5,6 +5,7 @@ import Search from "./Search";
 import Customers from "./Customers";
 import Customer from "./Customer";
 import Library from "./Library";
+
 import "./VideoStore.css";
 
 class VideoStore extends Component {
@@ -166,7 +167,7 @@ class VideoStore extends Component {
                 Submit Rental
               </button>
             </ul>
-            <h4 className="alertMessage text-center">
+            <h4 duration={5000} className="alertMessage text-center">
               {this.state.alertMessage}
             </h4>
             <Route

@@ -8,6 +8,10 @@ h1 {
   animation: text-flicker 3s linear infinite;
 }
 
+.alertMessage {
+  color: MediumVioletRed;
+}
+
 li {
   list-style: none;
   font-family: 'Permanent Marker', cursive;
