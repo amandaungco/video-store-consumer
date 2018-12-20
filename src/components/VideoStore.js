@@ -115,8 +115,8 @@ class VideoStore extends Component {
         console.log("API Checkout Success!");
         console.log(response);
         this.loadCustomers();
+        this.changeMessage(`${customerName} successfully Checked out ${movieName}!`);
         this.setState({
-          alertMessage: `${customerName} successfully Checked out ${movieName}!`,
           movieName: "",
           customerID: 0,
           customerName: ""
