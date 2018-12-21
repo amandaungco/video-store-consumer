@@ -67,7 +67,8 @@ SearchResult.propTypes = {
   releaseDate: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   overview: PropTypes.string,
-  imageURL: PropTypes.string.isRequired
+  imageURL: PropTypes.string.isRequired,
+  updateMoviesCallback: PropTypes.func
 };
 
 export default SearchResult;

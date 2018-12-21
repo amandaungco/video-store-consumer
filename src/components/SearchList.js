@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import SearchResult from "./SearchResult";
 
 const SearchList = props => {
-  debugger;
   const SearchList = props.resultList.map(result => {
     return (
       <SearchResult
@@ -18,7 +17,8 @@ const SearchList = props => {
 };
 
 SearchList.propTypes = {
-  resultList: PropTypes.array.isRequired
+  resultList: PropTypes.array.isRequired,
+  updateMoviesCallback: PropTypes.func
 };
 
 export default SearchList;

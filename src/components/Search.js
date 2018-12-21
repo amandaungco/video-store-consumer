@@ -3,6 +3,7 @@ import SearchList from "./SearchList";
 import SearchBar from "./SearchBar";
 import axios from "axios";
 import "./SearchBar.css";
+import PropTypes from "prop-types";
 
 const URL = "https://videostore-hac.herokuapp.com/movies?query=";
 
@@ -80,5 +81,9 @@ class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  updateMoviesCallback: PropTypes.func
+};
 
 export default Search;
