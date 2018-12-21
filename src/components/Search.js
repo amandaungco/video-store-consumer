@@ -7,14 +7,13 @@ import "./SearchBar.css";
 const URL = "https://videostore-hac.herokuapp.com/movies?query=";
 
 class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       resultList: [],
       alertMessage: ""
     };
   }
-
   onSearchChange = query => {
     if (query === "") {
       this.setState({
@@ -33,34 +32,35 @@ class Search extends Component {
 
   listResults = query => {
     axios
-    .get(URL + `${query}`)
+      .get(URL + `${query}`)
 
-    .then(response => {
-      const resultList = response.data.map(result => {
-        const newResult = {
-          ...result,
-          imageURL: result.image_url,
-          title: result.title,
-          releaseDate: result.release_date,
-          overview: result.overview ? result.overview : ""
-        };
-        return newResult;
-      });
-      this.setState({
-        resultList
-      });
-      if (this.state.resultList.length < 1){
-        this.setState({
-          alertMessage: "No Results Found"
+      .then(response => {
+        const resultList = response.data.map(result => {
+          const newResult = {
+            ...result,
+            imageURL: result.image_url,
+            title: result.title,
+            releaseDate: result.release_date,
+            overview: result.overview ? result.overview : ""
+          };
+          return newResult;
         });
-      }
-    })
-    .catch(error => {
-      this.setState({
-        alertMessage: error.message
+        this.setState({
+          resultList
+        });
+        if (this.state.resultList.length < 1) {
+          this.setState({
+            alertMessage: "No Results Found"
+          });
+        }
+      })
+      .catch(error => {
+        this.setState({
+          alertMessage: error.message
+        });
       });
-    });
   };
+  debugger;
 
   render() {
     return (
@@ -70,12 +70,15 @@ class Search extends Component {
         <h3>
           {this.state.resultList.length > 0 &&
             `Showing ${this.state.resultList.length} results`}
-          </h3>
-          <h4 className="alertMessage text-center">{this.state.alertMessage}</h4>
-          <SearchList resultList={this.state.resultList} />
-        </section>
-      );
-    }
+        </h3>
+        <h4 className="alertMessage text-center">{this.state.alertMessage}</h4>
+        <SearchList
+          resultList={this.state.resultList}
+          updateMoviesCallback={this.props.updateMoviesCallback}
+        />
+      </section>
+    );
   }
+}
 
-  export default Search;
+export default Search;

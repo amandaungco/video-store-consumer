@@ -10,20 +10,23 @@ class SearchResult extends Component {
       alertMessage: ""
     };
   }
+  changeMessage = message => {
+    this.setState({ alertMessage: message });
+    setTimeout(() => this.setState({ alertMessage: "" }), 2500);
+  };
 
-  changeMessage = (message) => {
-   this.setState({ alertMessage: message });
-   setTimeout(() => this.setState({ alertMessage: "" }), 2500);
+  updateMoviesCallback = () => {
+    this.props.updateMoviesCallback();
   };
 
   // const { title, releaseDate, overview, imageURL } = props
   onSearchResultSelect = () => {
     axios
       .post("https://videostore-hac.herokuapp.com/movies", this.props)
-// console.log(this.props)
+      // console.log(this.props)
       .then(response => {
-
         this.changeMessage(`${this.props.title} was added to the library`);
+        this.updateMoviesCallback();
         console.log(response);
         console.log("request posted");
       })
@@ -33,6 +36,7 @@ class SearchResult extends Component {
       });
   };
   render() {
+    console.log(this.props);
     return (
       <div className="card movie-card">
         <h4 className="alertMessage text-center">{this.state.alertMessage}</h4>

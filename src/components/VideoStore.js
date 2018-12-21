@@ -21,9 +21,9 @@ class VideoStore extends Component {
     };
   }
 
-  changeMessage = (message) => {
-   this.setState({ alertMessage: message });
-   setTimeout(() => this.setState({ alertMessage: "" }), 2500);
+  changeMessage = message => {
+    this.setState({ alertMessage: message });
+    setTimeout(() => this.setState({ alertMessage: "" }), 2500);
   };
 
   loadCustomers() {
@@ -49,7 +49,7 @@ class VideoStore extends Component {
       });
   }
 
-  loadMovies() {
+  loadMovies = () => {
     axios
       .get("https://videostore-hac.herokuapp.com/")
       .then(response => {
@@ -65,7 +65,7 @@ class VideoStore extends Component {
         console.log("error!");
         this.changeMessage(error.message);
       });
-  }
+  };
 
   componentDidMount() {
     // API Request for customers
@@ -120,7 +120,9 @@ class VideoStore extends Component {
           customerID: 0,
           customerName: ""
         });
-        this.changeMessage(`${customerName} successfully Checked out ${movieName}!`);
+        this.changeMessage(
+          `${customerName} successfully Checked out ${movieName}!`
+        );
       })
       .catch(error => {
         console.log(error.response.data.errors);
@@ -136,7 +138,6 @@ class VideoStore extends Component {
         </div>
         <Router>
           <div>
-
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -164,7 +165,8 @@ class VideoStore extends Component {
               {this.state.alertMessage}
             </h4>
             <Route
-              exact path="/"
+              exact
+              path="/"
               render={() => (
                 <Library
                   addMovieNameCallback={this.addMovieName}
@@ -172,7 +174,10 @@ class VideoStore extends Component {
                 />
               )}
             />
-            <Route path="/search" component={Search} />
+            <Route
+              path="/search"
+              render={() => <Search updateMoviesCallback={this.loadMovies} />}
+            />
             <Route
               path="/customers"
               render={() => (
